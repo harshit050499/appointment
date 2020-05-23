@@ -6,6 +6,7 @@
 		 $userid;
        
         $name=test_input($_POST['name']);
+        $ename=test_input($_POST['ename']);
          $check=$db->prepare('SELECT * FROM  user_details WHERE name=?');
         $data=array($name);
         $check->execute($data);
@@ -39,7 +40,7 @@
         		</div>
         		<div class="col-sm-6">
         			<div class="contain-button">
-        				<button onclick="confirm('<?php echo $datarow['id']?>');"class="btn btn-success">Confirm</button>
+        				<a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>"></a>
         			</div>
         		</div>
         		</div>
