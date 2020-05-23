@@ -4,6 +4,12 @@
 	{
 		header("Location:index.php");
 	}
+	// if($_GET['n']=="" && $_GET['e']=="")
+	// {
+	// 	header("Location:error.php");
+	// }
+	$name=$_GET['n'];
+	$event=$_GET['e'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,71 +43,101 @@
       <li><a href="#">Page 2</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-       <button class="btn btn-primary my-2 my-sm-0" type="submit">logout</button>
+       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</button>
      
     </ul>
   </div>
 </nav>
 <section>
 	<div class="col-sm-12">
-		<div class="heading">
-			<p>AVAILBILITY SLOT</p>
-		</div>
+
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
-			<div class="slot-list" style="float: left;width: 100%;">
-				<form id="aform">
-					<input type="hidden" name="token" id="token" value="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>">
-					<div class="list" id="list"></div>
-				
-				
-				
+			<div class="contain-head">
+				<div class="back-button">
+					<button class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
+    font-size: 14px;"></i>Back</button>
+				</div>
+				<div class="heading">
+					<p>Book An Appointment</p>
+				</div>
+				<div class="sub-heading">
+					<p>This is the type of event made by <?php echo $_GET['n'];?></p>
+				</div>
+			</div>
+			<div class="contain-details">
+				<div class="col-sm-6">
+					<div class="event-details" id="event-details"></div>
+				</div>
+				<div class="col-sm-6">
+					<div class="header">
+						<p>AVAILABLE SLOT</p>
+					</div>
+					<div class="slot-details" id="slot-details"></div>
+				</div>
 			</div>
 			
-			<div class="button" style="text-align: center;margin: 25px 0px;">
-	                             <input  class="button-submit btn btn-primary " type="submit" name="submit" style="background: rgb(177,4,0) !important; border:none !important; color: white !important;" onclick="save();">
-	                        </div>
+			
 		</div>
-		<div class="col-sm-2">
-		</div>
+		<div class="col-sm-2"></div>
 	</div>
 </section>
-	<script type="text/javascript">
-		getlist();
-		function getlist()
+<script type="text/javascript">
+	function getevent()
+	{
+		var ename="<?php echo $_GET['e']?>";
+		var name="<?php echo $_GET['n']?>";
+		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		if(ename!="" && name!="")
 		{
-
-			$.ajax(
+		$.ajax(
 									{
 										type:'POST',
-										url:"ajax/check.php",
-										
+										url:"ajax/getevent.php",
+										data:{ename:ename,name:name,token:token},
 										success:function(data)
 										{
-											alert(data);
-											$('#list').html(data);
+											//alert(data);
+											$('#event-details').html(data);
 										}
 									});
 		}
-		function save()
+		else
 		{
-									var form=document.getElementById('aform');
-									
-									//alert(test);
-									var data = new FormData(form);
-									$.ajax(
+
+		}
+	}
+	function getslot()
+	{
+
+		var name="<?php echo $_GET['n']?>";
+		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		if(name!="")
+		{
+		$.ajax(
 									{
-										url:"ajax/export.php",  
-						                method:"POST",  
-						                data:data,  
-						                contentType:false,  
-						                processData:false,  
-						                success:function(data){  
-						                  alert(data);
-						            }  
+										type:'POST',
+										url:"ajax/getslot.php",
+										data:{name:name,token:token},
+										success:function(data)
+										{
+											//alert(data);
+											$('#slot-details').html(data);
+										}
 									});
 		}
-	</script>
+		else
+		{
+
+		}
+	}
+	getevent();
+	getslot();
+	function booking(id)
+	{
+		
+	}
+</script>
 </body>
 <script type="text/javascript">
     $('form').submit(function(e) {
