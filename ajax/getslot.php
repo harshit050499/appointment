@@ -4,7 +4,8 @@
 	if(password_verify($_SESSION['mail'],$_POST['token']))
 	{
 		 $userid;
-       
+        $sid;
+        $flag=0;
         $name=test_input($_POST['name']);
         $ename=test_input($_POST['ename']);
          $check=$db->prepare('SELECT * FROM  user_details WHERE name=?');
@@ -18,11 +19,12 @@
         $check=$db->prepare('SELECT * FROM  available WHERE user_id=?');
         $data=array($userid);
         $check->execute($data);
+        //$a=array();
         while($datarow=$check->fetch())
         {
             $a[]=explode(",", $datarow['slot']);
         }
-        //var_dump($a[0]);
+        var_dump($a[0]);
         $check=$db->prepare('SELECT * FROM  slotlist');
         $data=array();
         $check->execute($data);
@@ -39,15 +41,19 @@
         			</div>
         		</div>
         		<div class="col-sm-6">
+
         			<div class="contain-button">
-        				<a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>"></a>
+        				<a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>" class="btn btn-success">Confirm</a>
         			</div>
+
         		</div>
         		</div>
+
         		
         		<?php
         	}
 	}
+
 }
 function test_input($data) {
   $data = trim($data);

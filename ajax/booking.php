@@ -26,8 +26,8 @@
 
         if(validiate_input($eid,0))
         {
-             $check=$db->prepare('SELECT * FROM  event_details WHERE ename=?');
-            $data=array($eid);
+             $check=$db->prepare('SELECT * FROM  event_details WHERE ename=? && user_id=?');
+            $data=array($eid,$userid);
               $check->execute($data);
              while($datarow=$check->fetch())
              {

@@ -53,52 +53,11 @@
                         </div>   
                     </div>
                 <?php } ?>
-                    <div class="col-sm-6">
-                        <div class="header">
-                        <p>AVAILABLE SLOT</p>
-                    </div>
-                        <?php
-                        $check=$db->prepare('SELECT * FROM  user_details WHERE name=?');
-                        $data=array($name);
-                        $check->execute($data);
-                        while($datarow=$check->fetch())
-                        {
-                            $userid=$datarow['id'];
-                        }
-                        $result;
-                        $check=$db->prepare('SELECT * FROM  available WHERE user_id=?');
-                        $data=array($userid);
-                        $check->execute($data);
-                        while($datarow=$check->fetch())
-                        {
-                            $a[]=explode(",", $datarow['slot']);
-                        }
-        
-                        $check=$db->prepare('SELECT * FROM  slotlist');
-                        $data=array();
-                        $check->execute($data);
-                        while($datarow=$check->fetch())
-                        {
-
-                            if(in_array($datarow['id'], $a[0]))
-                            {
-                            ?>
-                                <div class="single-slot">
-                                    <div class="col-sm-6">
-                                         <div class="detail">
-                                            <p><?php echo $datarow['start']."-".$datarow['end'];?></p>
-                                        </div>
-                                </div>
-                                <div class="col-sm-6">
-                                <div class="contain-button">
-                                    <a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>" class="btn btn-primary">Confirm</a>
-                                </div>
-                            </div>
-                            </div>
+                    
                 
                                 <?php
-                                 }
-                        }
+                    
+                        
                                 ?>
                     
               

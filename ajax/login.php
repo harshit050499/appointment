@@ -19,6 +19,7 @@
 					{
                          $_SESSION['id']=$datarow['id'];
                          $_SESSION['mail']=$email;
+                         $_SESSION['name']=$datarow['name'];
                         
 						echo 0;
 					}

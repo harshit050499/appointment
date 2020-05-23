@@ -19,7 +19,7 @@
              {
              	$eventid=$datarow['id'];
              }
-             $query=$db->prepare("INSERT INTO bookinglog(name,email,spec,sid,username,eid) VALUES (?, ?, ?,?,?,?)");
+             $query=$db->prepare("INSERT INTO bookinglog(iname,iemail,spec,sid,username,eid) VALUES (?, ?, ?,?,?,?)");
 			 $data=array($name,$email,$spec,$sid,$username,$eventid);
 			 $execute=$query->execute($data);
 			if($execute)
