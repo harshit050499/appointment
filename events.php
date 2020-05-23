@@ -96,10 +96,7 @@
 
     }
   }
-  function()
-  {
-    
-  }
+  
   getevent();
 </script>
 </body>

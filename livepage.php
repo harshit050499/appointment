@@ -21,10 +21,21 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/normalize.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/clndr.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style type="text/css">
+	.hidden
+	{
+		display: none;
+	}
+	.show
+	{
+		display: block;
+	}
+</style>
 <body>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -65,11 +76,54 @@
 					<p>This is the type of event made by <?php echo $_GET['n'];?></p>
 				</div>
 			</div>
+			<div class="col-sm-6">
 			<div class="contain-details" id="con-details">
+				</div>
+			</div>
+				<div class="col-sm-6">
+					<div id="a">
+						<div class="cal1"></div>
+						<div class="nxt-button">
+							<button class="btn btn-primary" onclick="getslot()">Select Time</button>
+						</div>
+					</div>
+					<div id="b">
+					
+					<div class="slot-details" id="slot-details"></div>
+					</div>
+				</div>
 				
 				
 			</div>
-			
+			<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+	 <script src="clndr.js"></script>
+	 <script>
+    		var date;
+		var calendar = {};
+$(document).ready( function() {
+    
+        				calendar.clndr = $('.cal1').clndr({
+        	   
+        	        clickEvents: {
+        	            click: function (target) {
+                            
+        	                date=target['date']['_i'];
+        	               
+        	                    $("#event").empty();
+        	            }
+        	        },
+        	        
+        	        showAdjacentMonths: true,
+        	        adjacentDaysChangeMonth: false
+        	    });
+        });
+    
+    </script>
 			
 		</div>
 		<div class="col-sm-2"></div>
@@ -102,7 +156,31 @@
 	}
 
 	getevent();
-	//getslot();
+	function getslot()
+	{
+		var a=document.getElementById('a');
+    	var b=document.getElementById('b');	
+    		a.classList.add('hidden');
+			b.classList.remove('hidden');
+			b.classList.add('show');
+		var ename="<?php echo $_GET['e']?>";
+		var name="<?php echo $_GET['n']?>";
+		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		if(ename!="" && name!="")
+		{
+		$.ajax(
+									{
+										type:'POST',
+										url:"ajax/getslot.php",
+										data:{ename:ename,name:name,date:date,token:token},
+										success:function(data)
+										{
+											//alert(data);
+											$('#slot-details').html(data);
+										}
+									});
+		}
+	}
 
 </script>
 </body>
