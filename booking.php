@@ -8,7 +8,6 @@
 	// {
 	// 	header("Location:error.php");
 	// }
-	$name=$_GET['n'];
 	//$event=$_GET['e'];
 ?>
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<!-- <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">WebSiteName</a>
@@ -47,26 +46,23 @@
      
     </ul>
   </div>
-</nav>
+</nav> -->
 <section>
     <div class="col-sm-12">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-       <div class="contain-head">
+       <!-- <div class="contain-head">
         <div class="back-button">
           <button class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
     font-size: 14px;"></i>Back</button>
-        </div>
+        </div> -->
         <div class="heading">
-          <p>SCHEDULED EVENTS</p>
-        </div>
-        <div class="sub-heading">
-          <p>This are all the events which are schduled by <?php echo $_GET['n'];?></p>
-        </div>
+          <p>CONFIRM BOOKING</p>
+        
+        
       </div>
-      <div class="contain-event">
-        <div class="event-list" id="event-list"></div>
-      </div>
+      <div class="contain-details" id="contain-details">
+        
       </div>
       <div class="col-sm-2"></div>
     </div>
@@ -75,19 +71,21 @@
   function getevent()
   {
     
+    var slot="<?php echo $_GET['s']?>";
+    var eid="<?php echo $_GET['eid']?>";
     var name="<?php echo $_GET['n']?>";
     
-    if( name!="")
+    if( slot!="" && eid!="" && name!="")
     {
     $.ajax(
                   {
                     type:'POST',
-                    url:"ajax/eventlist.php",
-                    data:{name:name},
+                    url:"ajax/booking.php",
+                    data:{slot:slot,eid:eid,name:name,form:"form"},
                     success:function(data)
                     {
-                      alert(data);
-                      $('#event-list').html(data);
+                      //alert(data);
+                      $('#contain-details').html(data);
                     }
                   });
     }
@@ -96,11 +94,38 @@
 
     }
   }
-  function()
-  {
-    
-  }
+  
   getevent();
+  function save()
+  {
+    var name=document.getElementById('name').value;
+    var email=document.getElementById('email').value;
+    var spec=document.getElementById('spec').value;
+     var slot="<?php echo $_GET['s']?>";
+    var eid="<?php echo $_GET['eid']?>";
+    var user="<?php echo $_GET['n']?>";
+    if( slot!="" && eid!="" && name!="")
+    {
+    $.ajax(
+                  {
+                    type:'POST',
+                    url:"ajax/bookinglog.php",
+                    data:{slot:slot,eid:eid,user:user,name:name,email:email,spec:spec,submit:"<?php echo password_hash("submit", PASSWORD_DEFAULT)?>"},
+                    success:function(data)
+                    {
+                      if(data==0)
+                      {
+                        alert('Appointment Booked Successfully');
+                      }
+                      else
+                      {
+                        alert(data);
+                      }
+                      
+                    }
+                  });
+    }
+  }
 </script>
 </body>
 <script type="text/javascript">

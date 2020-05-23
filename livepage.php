@@ -65,16 +65,9 @@
 					<p>This is the type of event made by <?php echo $_GET['n'];?></p>
 				</div>
 			</div>
-			<div class="contain-details">
-				<div class="col-sm-6">
-					<div class="event-details" id="event-details"></div>
-				</div>
-				<div class="col-sm-6">
-					<div class="header">
-						<p>AVAILABLE SLOT</p>
-					</div>
-					<div class="slot-details" id="slot-details"></div>
-				</div>
+			<div class="contain-details" id="con-details">
+				
+				
 			</div>
 			
 			
@@ -98,7 +91,7 @@
 										success:function(data)
 										{
 											//alert(data);
-											$('#event-details').html(data);
+											$('#con-details').html(data);
 										}
 									});
 		}
@@ -107,36 +100,10 @@
 
 		}
 	}
-	function getslot()
-	{
 
-		var name="<?php echo $_GET['n']?>";
-		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
-		if(name!="")
-		{
-		$.ajax(
-									{
-										type:'POST',
-										url:"ajax/getslot.php",
-										data:{name:name,token:token},
-										success:function(data)
-										{
-											//alert(data);
-											$('#slot-details').html(data);
-										}
-									});
-		}
-		else
-		{
-
-		}
-	}
 	getevent();
-	getslot();
-	function booking(id)
-	{
-		
-	}
+	//getslot();
+
 </script>
 </body>
 <script type="text/javascript">
