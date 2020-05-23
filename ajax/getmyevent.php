@@ -47,7 +47,8 @@
                                 ?>
                             </div>
                             <div class="myevent-des">
-                                <p><?php echo $datarow['description'];?></p>
+
+                                <p><b>Description:</b><?php echo $datarow['description'];?></p>
                             </div>
                 </div>
                 <div class="deletebutton">

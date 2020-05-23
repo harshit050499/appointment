@@ -9,6 +9,7 @@
 		$sid=test_input($_POST['slot']);
 		$username=test_input($_POST['user']);
 		$eventname=test_input($_POST['eid']);
+        $date=test_input($_POST['date']);
 		$eventid;
 		if(validiate_input($email,1) && validiate_input($name,0) && validiate_input($spec,0) && validiate_input($sid,0) && validiate_input($username,0) && validiate_input($eventname,0))
 		{
@@ -19,8 +20,8 @@
              {
              	$eventid=$datarow['id'];
              }
-             $query=$db->prepare("INSERT INTO bookinglog(iname,iemail,spec,sid,username,eid) VALUES (?, ?, ?,?,?,?)");
-			 $data=array($name,$email,$spec,$sid,$username,$eventid);
+             $query=$db->prepare("INSERT INTO bookinglog(iname,iemail,spec,sid,username,eid,date) VALUES (?, ?, ?,?,?,?,?)");
+			 $data=array($name,$email,$spec,$sid,$username,$eventid,$date);
 			 $execute=$query->execute($data);
 			if($execute)
 			{
