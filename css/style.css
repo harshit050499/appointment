@@ -111,3 +111,11 @@ section
     border-radius: 25px;
     margin:25px 0px;
 }
+.contain-time
+{
+	    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 500;
+}
