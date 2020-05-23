@@ -27,7 +27,7 @@
 				$execute=$query->execute($data);
 				if($execute)
 				{
-					$_SESSION['username'] = $name;
+					
 					echo 0;
 				}
 				else

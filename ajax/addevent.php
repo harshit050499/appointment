@@ -1,40 +1,36 @@
 <?php
 	include('../connection.php');
     session_start();
-	if(isset($_POST['login']))
+	if(password_verify($_SESSION['mail'],$_POST['token']))
 	{
+        $ename=test_input($_POST['ename']);
+     $etype=test_input($_POST['etype']);
+     $des=test_input($_POST['des']);
+    if(validiate_input($ename,0) && validiate_input($etype,0) && validiate_input($des,0) )
+    {
+         $check=$db->prepare('INSERT INTO event_details(ename,etype,description,user_id) VALUES(?,?,?,?)');
+        $data=array($ename,$etype,$des,$_SESSION['id']);
+         $execute= $check->execute($data);
+            if($execute)
+            {
+               echo 0;
+           }
+           else
+           {
+            echo 1;
+           }
+
+    }
+    else
+    {
+        echo 2;
+    }
 		
-		 $email=test_input($_POST['email']);
-		 $pass=test_input($_POST['pass']);
-		if(validiate_input($email,1) && validiate_input($pass,2))
-		{
-			$check=$db->prepare('SELECT * from user_details WHERE  email = ?');
-			$data=array($email);
-			$check->execute($data);
-			if($check->rowcount()>0)
-			{
-				while($datarow=$check->fetch())
-				{
-					if(password_verify($pass,$datarow['password']))
-					{
-                         $_SESSION['id']=$datarow['id'];
-                         $_SESSION['mail']=$email;
-                        
-						echo 0;
-					}
-					else
-					{
-						echo 1;
-					}
-				}
-			}
-		}
-		else
-		{
-			echo 2;
-		}
 	}
- 
+    else
+    {     
+      echo 7;   
+    }
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
