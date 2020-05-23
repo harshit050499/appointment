@@ -1,0 +1,113 @@
+section
+{
+	float:left;
+	width: 100%;
+
+}
+.heading
+{
+	text-align: center;
+	font-size: 20px;
+
+}
+.sub-heading
+{
+	text-align: center;
+	font-size: 15px;
+
+}
+.slot-list label
+{
+	padding: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+}
+.contain-head
+{
+	    width: 100%;
+    float: left;
+}
+.contain-form
+{
+	width: 100%;
+	float: left;
+	padding: 40px;
+}
+.event-contain
+{
+	margin-top:25px;
+	width: 100%;
+	float: left;
+	box-shadow: 0 0 1px 2px grey;
+	border-radius: 25px;
+}
+.contain-details
+{
+	    float: left;
+    width: 100%;
+    margin: 25px 0px;
+    box-shadow: 0 0 1px 2px grey;
+    border-radius: 25px;
+    padding: 40px;
+}
+.contain-name
+{
+	text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 700;
+    border-bottom: 1px solid black;
+}
+.contain-name p
+{
+	margin: 0px;
+}
+.contain-type
+{
+	margin: 10px 0px;
+}
+.contain-type i
+{
+	    font-size: 31px;
+    padding: 7px;
+}
+.single-slot
+{
+	    float: left;
+    width: 100%;
+    margin:10px 0px;
+}
+.slot-details
+{
+	float: left;
+    width: 100%;
+}
+.detail
+{
+	margin-top:10px;
+	text-align: center;
+}
+.header
+{
+	text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+}
+.contain-event
+{
+	float: left;
+    /* margin: 100%; */
+    width: 100%;
+    margin:25px 0px;
+}
+.event-list
+{
+	float: left;
+    width: 100%;
+}
+.single-event
+{
+	    box-shadow: 0 0 1px 2px grey;
+    padding: 25px;
+    border-radius: 25px;
+    margin:25px 0px;
+}
