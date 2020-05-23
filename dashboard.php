@@ -133,27 +133,7 @@ $(document).ready( function() {
     
 	</script>
 </section>
-<section>
-	<div class="col-sm-12">
-		<div class="col-sm-2">
-		</div>
-		<div class="col-sm-8">
-			<div class="contain-option">
-				<ul>
-					<li><button class="btn btn-primary" onclick="myevents();">My-events</button></li>
-					<li><button class="btn btn-primary" onclick="schedule();">Scheduled Events</button></li>
-				</ul>
-			</div>
-			<div class="event-type" id="myevent">
-				
-			</div>
-			<div class="event-type" id="schedule">
-				
-			</div>
-		</div>
-		<div class="col-sm-2"></div>
-	</div>
-</section>
+
 	<script type="text/javascript">
 		getlist();
 		function getlist()
@@ -163,10 +143,11 @@ $(document).ready( function() {
 									{
 										type:'POST',
 										url:"ajax/check.php",
-										
+										data:{token:'<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>'},
 										success:function(data)
 										{
 											//alert(data);
+
 											$('#list').html(data);
 										}
 									});
@@ -176,12 +157,9 @@ $(document).ready( function() {
 								if(date!="")
 								{
 									var form=document.getElementById('aform');
-									
-									//alert(test);
-									//alert(date);
 									var data = new FormData(form);
 									data.append('date', date);
-									alert(data);
+									
 									$.ajax(
 									{
 										url:"ajax/export.php",  
@@ -194,6 +172,15 @@ $(document).ready( function() {
 						                  {
 						                  	alert('Your availibility slots have been added');
 						                  }
+						                  else if(data==1)
+						                  {
+						                  	alert('Something Went Wrong! Try again');
+						                  }
+						                  else
+						                  {
+						                  	alert(data);
+						                  	alert('Please select date as well as time!');
+						                  }
 						            }  
 									});
 								}
@@ -202,43 +189,7 @@ $(document).ready( function() {
 									alert('Please select date first');
 								}
 		}
-		function myevents()
-		{
-			var a=document.getElementById('myevent');
-			var b=document.getElementById('schedule');
-			b.classList.add('hidden');
-			a.classList.remove('hidden');
-			a.classList.add('show');
-			var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT);?>";
-			$.ajax(
-									{
-										url:"ajax/getmyevent.php",  
-						                method:"POST",  
-						                data:{token:token,submit:"submit"},    
-						                success:function(data){  
-						                  $('#myevent').html(data);
-						            }  
-									});
-		}
-		function schedule()
-		{
-			var a=document.getElementById('schedule');
-			var b=document.getElementById('myevent');
-			b.classList.add('hidden');
-			a.classList.remove('hidden');
-			a.classList.add('show');
-			var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT);?>";
-			$.ajax(
-									{
-										url:"ajax/schedule.php",  
-						                method:"POST",  
-						                data:{token:token,submit:"submit"},    
-						                success:function(data){  
-						                  $('#schedule').html(data);
-						            }  
-									});
-		}
-		myevents();
+		
 	</script>
 </body>
 <script type="text/javascript">

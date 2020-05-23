@@ -23,22 +23,15 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Appointment</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
+      <li ><a href="dashboard.php">Home</a></li>
+      <li class="active"><a href="myevents.php"> MY Events</a></li>
+      <li><a href="Schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</button>
-     
+      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -66,12 +59,14 @@
 									</div>
 									<div class="form-group">
 									<label for="name">Event Type:</label>
-									<input class="form-control" type="text" name="etype" id="etype">
+									<select name="etype" id="etype" class="form-control">
+										<option  value="default">Select Type</option>
+  										<option value="location">Location </option>
+  										<option value="videocall"> Video Conferencing</option>
+  										<option value="phone">Telephonic</option>
+
+  								    </select>
 									</div>
-									<!-- <div class="form-group">
-									<label for="name">Event Color:</label>
-									<input class="form-control" type="text" name="tname" id="tname">
-									</div> -->
 									<div class="form-group">
 									<label for="name">Description/Instruction:</label>
 									<textarea class="form-control" type="text" name="des" id="des" placeholder="any specific information invitee should know"></textarea> 
@@ -94,7 +89,7 @@
 									var etype=document.getElementById('etype').value;
 									var des=document.getElementById('des').value;
 									var token=document.getElementById('token').value;
-									if(ename!="" && etype!="")
+									if(ename!="" && etype!="default" && etype!="" && des!="")
 									{
 										$.ajax(
 										{
@@ -115,10 +110,7 @@
 							                  {
 							                  	alert("Enter a Valid Input");
 							                  }
-							                  else
-							                  {
-							                  	alert(data);
-							                  }
+							                  
 							            }  
 										});
 								}

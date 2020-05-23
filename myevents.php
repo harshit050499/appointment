@@ -28,15 +28,30 @@
       <a class="navbar-brand" href="#">Appointment</a>
     </div>
     <ul class="nav navbar-nav">
-      <li ><a href="#">Home</a></li>
+      <li ><a href="dashboard.php">Home</a></li>
       <li class="active"><a href="myevents.php"> MY Events</a></li>
-      <li><a href="#">Scheduled events</a></li>
+      <li><a href="Schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
+<section>
+	<div class="col-sm-12">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-8">
+			 <div class="heading">
+          		<p>MY EVENTS</p>
+			</div>
+		</div>
+		<div class="col-sm-2">
+			<div class="neweventbtn" style="text-align: right;">
+					<a href="newevent.php" class="btn btn-primary">Create New Event</a>
+				</div>
+		</div>
+	</div>
+</section>
 <section>
 	<div class="col-sm-12">
 		<div class="col-sm-2"></div>

@@ -104,13 +104,14 @@
      var slot="<?php echo $_GET['s']?>";
     var eid="<?php echo $_GET['eid']?>";
     var user="<?php echo $_GET['n']?>";
+    var date="<?php echo $_GET['d']?>";
     if( slot!="" && eid!="" && name!="")
     {
     $.ajax(
                   {
                     type:'POST',
                     url:"ajax/bookinglog.php",
-                    data:{slot:slot,eid:eid,user:user,name:name,email:email,spec:spec,submit:"<?php echo password_hash("submit", PASSWORD_DEFAULT)?>"},
+                    data:{slot:slot,eid:eid,user:user,name:name,email:email,date:date,spec:spec,submit:"<?php echo password_hash("submit", PASSWORD_DEFAULT)?>"},
                     success:function(data)
                     {
                       if(data==0)

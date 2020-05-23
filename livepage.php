@@ -8,8 +8,7 @@
 	// {
 	// 	header("Location:error.php");
 	// }
-	$name=$_GET['n'];
-	$event=$_GET['e'];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,28 +36,7 @@
 	}
 </style>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</button>
-     
-    </ul>
-  </div>
-</nav>
+
 <section>
 	<div class="col-sm-12">
 
@@ -76,6 +54,7 @@
 					<p>This is the type of event made by <?php echo $_GET['n'];?></p>
 				</div>
 			</div>
+			<div class="alldetail">
 			<div class="col-sm-6">
 			<div class="contain-details" id="con-details">
 				</div>
@@ -83,9 +62,9 @@
 				<div class="col-sm-6">
 					<div id="a">
 						<div class="cal1"></div>
-						<div class="nxt-button">
+						<!-- <div class="nxt-button">
 							<button class="btn btn-primary" onclick="getslot()">Select Time</button>
-						</div>
+						</div> -->
 					</div>
 					<div id="b">
 					
@@ -93,8 +72,10 @@
 					</div>
 				</div>
 				
-				
-			</div>
+				</div>
+			
+	
+			
 			<script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script
@@ -113,7 +94,7 @@ $(document).ready( function() {
         	            click: function (target) {
                             
         	                date=target['date']['_i'];
-        	               
+        	               	getslot();
         	                    $("#event").empty();
         	            }
         	        },
@@ -166,6 +147,8 @@ $(document).ready( function() {
 		var ename="<?php echo $_GET['e']?>";
 		var name="<?php echo $_GET['n']?>";
 		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		//alert(date);
+		
 		if(ename!="" && name!="")
 		{
 		$.ajax(
