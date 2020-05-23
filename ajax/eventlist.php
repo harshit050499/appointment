@@ -53,8 +53,11 @@
                                 <p><?php echo $datarow['description'];?></p>
                             </div>
                         </div>
+                         <div class="contain-button">
+                        <a href="livepage.php?n=<?php echo $name?>&e=<?php echo $datarow['ename']?>" class="btn btn-primary">Confirm Booking</a>
                     </div>
-                    <div class="contain-button"></div>
+                    </div>
+                   
                 </div>
                 <?php
              }
