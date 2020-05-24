@@ -22,3 +22,12 @@ view and select the event in which they want to book the slot with the person.
 
 
 Note:-Was not able to integrate the mailing function beacause it shows STMP error as free hosting doesnot allow to implement the mailing function.
+
+
+LINK TO LIVE PROJECT
+    http://appointmentsystem.atwebpages.com/
+    
+LINK TO POSTMAN DOCUMENTATION
+
+    https://www.getpostman.com/collections/2f0c416f1c73a747e1b9
+
