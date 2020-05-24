@@ -1,5 +1,5 @@
 This repository contains a project named as appointment Slot booking system which is made as a assessment given 
-by Navigus Technologies. This was made in reference to the website Calendly.com.
+by Navigus Recruitment Process. This was made in reference to the website Calendly.com.
 
 Features of the project:
 1-User can host events and make themselves available for particular time slots and in particular day.
