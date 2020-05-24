@@ -1,28 +1,37 @@
 <?php
 		include('../connection.php');
     session_start();
-	if(password_verify($_SESSION['mail'],$_POST['token']))
+	if($_SESSION['apikey'] == $_GET['token'])
 	{
-		$check=$db->prepare('SELECT b.tid,b.iname,b.spec,b.username,b.sid,b.eid,b.date,s.start,s.end FROM `bookinglog` as b JOIN user_details as u ON b.username=u.name JOIN slotlist as s ON s.id=b.sid WHERE b.username=?');
+		$check=$db->prepare('SELECT b.tid,b.iname,b.spec,b.username,b.sid,b.eid,b.date,s.start,s.end,e.ename,e.etype FROM `bookinglog` as b JOIN user_details as u ON b.username=u.name JOIN slotlist as s ON s.id=b.sid JOIN event_details as e ON e.id=b.eid WHERE b.username=?');
         $data=array($_SESSION['name']);
         $check->execute($data);
         while($datarow=$check->fetch())
         {
         	?>
         	<div class="single-schedule">
-        		<div class="col-sm-3">
+        		<div class="col-sm-2">
         			
-        			<p><?php echo $datarow['start']."-".$datarow['end']?><br><?php echo $datarow['date']?></p>
+        			<p><b>TIME:&nbsp;</b><?php echo $datarow['start']."-".$datarow['end']?><br><b>DATE:&nbsp;</b><?php echo $datarow['date']?></p>
         		</div>
-        		<div class="col-sm-3">
-        			<p><?php echo $datarow['iname']?></p>
+        		<div class="col-sm-2">
+        			<p><b>INVITEE NAME<br></b><?php echo $datarow['iname']?></p>
         		</div>
-        		<div class="col-sm-3">
-        			<p><?php echo $datarow['spec'];?></p>
+                <div class="col-sm-2">
+                    <p><b>EVENT NAME<br></b><?php echo $datarow['ename']?></p>
+                </div>
+        		<div class="col-sm-2">
+        			<p><b>Meeting at<br></b><?php echo $datarow['spec'];?></p>
         		</div>
-        		<div class="col-sm-3">
-        			<a href="cancel.php?id=<?php echo password_hash($datarow['tid'], PASSWORD_DEFAULT);?>&token=<?php echo password_hash("delete", PASSWORD_DEFAULT)?>" class="btn btn-danger1">Cancel</a>
+               
+
+                
+        		<div class="col-sm-2">
+        			<button onclick="cancel('<?php echo password_hash($datarow['tid'], PASSWORD_DEFAULT);?>');" class="btn btn-danger1">Cancel</button>
         		</div>
+                <div class="col-sm-2">
+                    <button onclick="cancel('<?php echo password_hash($datarow['tid'], PASSWORD_DEFAULT);?>');" class="btn btn-primary">ADD TO CALENDER</button>
+                </div>
         	</div>
         	<?php
            

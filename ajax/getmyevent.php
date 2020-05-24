@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
     session_start();
-	if(password_verify($_SESSION['mail'],$_POST['token']) && $_POST['submit'] == "submit")
+	if($_SESSION['apikey'] == $_GET['token'] && $_POST['submit'] == "submit")
 	{
 		$userid;
 		 $check=$db->prepare('SELECT * FROM  user_details WHERE email=?');
@@ -52,7 +52,7 @@
                             </div>
                 </div>
                 <div class="deletebutton">
-                	<a href="delete.php?sid=<?php echo password_hash($datarow['id'], PASSWORD_DEFAULT)?>" class="btn btn-danger1">Delete</a>
+                	<button onclick="deleting('<?php echo password_hash($datarow['id'], PASSWORD_DEFAULT);?>');" class="btn btn-danger1">Delete</button>
                 </div>
            	</div>
            </div>

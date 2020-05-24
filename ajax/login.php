@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
     session_start();
-	if(isset($_POST['login']))
+	if(isset($_POST['login'])&& password_verify("login", $_POST['token']))
 	{
 		
 		 $email=test_input($_POST['email']);
@@ -20,6 +20,7 @@
                          $_SESSION['id']=$datarow['id'];
                          $_SESSION['mail']=$email;
                          $_SESSION['name']=$datarow['name'];
+                         $_SESSION['apikey']=$datarow['apikey'];
                         
 						echo 0;
 					}

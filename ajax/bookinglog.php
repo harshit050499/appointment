@@ -1,6 +1,8 @@
 <?php
 		include('../connection.php');
-    session_start();
+    include('../email.php');
+        
+   
 	if(password_verify("submit",$_POST['submit']))
 	{
 		$name=test_input($_POST['name']);
@@ -11,6 +13,7 @@
 		$eventname=test_input($_POST['eid']);
         $date=test_input($_POST['date']);
 		$eventid;
+        $time;
 		if(validiate_input($email,1) && validiate_input($name,0) && validiate_input($spec,0) && validiate_input($sid,0) && validiate_input($username,0) && validiate_input($eventname,0))
 		{
 		 	$check=$db->prepare('SELECT * FROM  event_details WHERE ename=?');
@@ -20,14 +23,21 @@
              {
              	$eventid=$datarow['id'];
              }
+             $check=$db->prepare('SELECT * FROM  slotlist WHERE id=?');
+            $data=array($sid);
+              $check->execute($data);
+             while($datarow=$check->fetch())
+             {
+                $time=$datarow['start']."-".$datarow['end'];
+             }
              $query=$db->prepare("INSERT INTO bookinglog(iname,iemail,spec,sid,username,eid,date) VALUES (?, ?, ?,?,?,?,?)");
 			 $data=array($name,$email,$spec,$sid,$username,$eventid,$date);
 			 $execute=$query->execute($data);
 			if($execute)
 			{
-					
+					send_mail($email,$username,$time,$date);
 					echo 0;
-					//mailfunction
+					
 			}
 			else
 			{

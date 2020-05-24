@@ -1,4 +1,20 @@
+
 <?php
+function keygen($length=10)
+{
+    $key = '';
+    list($usec, $sec) = explode(' ', microtime());
+    mt_srand((float) $sec + ((float) $usec * 100000));
+    
+    $inputs = array_merge(range('z','a'),range(0,9),range('A','Z'));
+
+    for($i=0; $i<$length; $i++)
+    {
+        $key .= $inputs{mt_rand(0,61)};
+    }
+    return $key;
+}
+
 	include('../connection.php');
     session_start();
 	if(isset($_POST["signup"]))
@@ -9,6 +25,7 @@
 		$pass=test_input($_POST['pass']);
 		$cpass=test_input($_POST['cpass']);
 		$flag=0;
+        $key=password_hash(keygen(), PASSWORD_DEFAULT);
 		if(validiate_input($name,0) && validiate_input($email,1) && validiate_input($pass,2))
 		{
 			$check=$db->prepare('SELECT * from user_details WHERE  email = ?');
@@ -22,8 +39,8 @@
 			if($flag==0)
 			{
 				$password1_hash=password_hash($pass,PASSWORD_DEFAULT);
-				$query=$db->prepare("INSERT INTO user_details(name,email,password) VALUES (?, ?, ?)");
-				$data=array($name,$email,$password1_hash);
+				$query=$db->prepare("INSERT INTO user_details(name,email,password,apikey) VALUES (?, ?, ?,?)");
+				$data=array($name,$email,$password1_hash,$key);
 				$execute=$query->execute($data);
 				if($execute)
 				{

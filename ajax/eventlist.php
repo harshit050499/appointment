@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
-    session_start();
-	if(1)
+    
+	if(password_verify("eventlist", $_POST['token']))
 	{
         $userid;
         $name=test_input($_POST['name']);

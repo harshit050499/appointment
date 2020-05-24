@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
-    session_start();
-	if(isset($_POST['form']))
+    
+	if(isset($_POST['form']) && password_verify("booking",$_POST['token']))
 	{
         $userid;
         $value;

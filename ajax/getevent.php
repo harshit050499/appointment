@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
-    session_start();
-	if(password_verify($_SESSION['mail'],$_POST['token']))
+    
+	if(password_verify("getevent",$_POST['token']))
 	{
         $userid;
         $ename=test_input($_POST['ename']);

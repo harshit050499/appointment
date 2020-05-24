@@ -1,7 +1,7 @@
 <?php
     include('../connection.php');
     session_start();
-    if(password_verify($_SESSION['mail'], $_POST['token']))
+    if($_SESSION['apikey'] == $_GET['token'])
     {
         $check=$db->prepare('SELECT * from slotlist');
             $data=array();

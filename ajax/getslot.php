@@ -1,7 +1,7 @@
 <?php
 	include('../connection.php');
-    session_start();
-	if(password_verify($_SESSION['mail'],$_POST['token']))
+    
+	if(password_verify("getslot",$_POST['token']))
 	{
 		 $userid;
         $sid;
@@ -60,7 +60,7 @@
         		<div class="col-sm-6">
 
         			<div class="contain-button">
-        				<a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>&d=<?php echo $_POST['date'] ?>" class="btn btn-success">Confirm</a>
+        				<a href="booking.php?n=<?php echo $name?>&s=<?php echo $datarow['id']?>&eid=<?php echo $ename?>&d=<?php echo $_POST['date'] ?>&token=<?php echo password_hash("booking", PASSWORD_DEFAULT)?>" class="btn btn-success">Confirm</a>
         			</div>
 
         		</div>

@@ -1,9 +1,10 @@
 <?php
 	include('../connection.php');
     session_start();
-	if(password_verify($_SESSION['mail'],$_POST['token']))
+   
+	if($_SESSION['apikey'] == $_GET['token'])
 	{
-        $ename=test_input($_POST['ename']);
+       $ename=test_input($_POST['ename']);
      $etype=test_input($_POST['etype']);
      $des=test_input($_POST['des']);
     if(validiate_input($ename,0) && validiate_input($etype,0) && validiate_input($des,0) )
