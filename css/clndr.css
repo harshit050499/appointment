@@ -59,6 +59,7 @@ h5 {
   max-width: 600px;
   font-family: 'Droid Sans Mono';
   font-size: 14px;
+      padding: 40px;
 }
 .cal1 .clndr .clndr-controls {
   display: inline-block;
