@@ -35,7 +35,7 @@
 			 $execute=$query->execute($data);
 			if($execute)
 			{
-					send_mail($email,$username,$time,$date);
+					//send_mail($email,$username,$time,$date);
 					echo 0;
 					
 			}
