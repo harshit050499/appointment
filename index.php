@@ -192,6 +192,10 @@
                                                 
                                                 window.location.reload();
                                              }
+                                             else if(data == 4)
+                                             {
+                                             	alert('name exist.Please enter another name!');
+                                             }
                                              else if(data==7)
                                              {
                                              	alert("something went wrong");

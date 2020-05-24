@@ -39,7 +39,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="dashboard.php">Home</a></li>
-      <li><a href="myevents.php"> MY Events</a></li>
+      <li><a href="myevents.php"> My Events</a></li>
       <li><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -53,13 +53,13 @@
 		<div class="col-sm-10">
 			<div class="col-sm-4">
 				<div class="welcome" style="font-size: 30px;">
-					<p>Welcome,<?php echo $_SESSION['name'];?></p>
+					<p>Welcome,<span style="text-transform: capitalize;"><?php echo $_SESSION['name'];?></span></p>
 				</div>
 				<hr>
 			</div>
 			<div class="col-sm-4">
-				<div class="link" style="text-align: center;font-size: 14px;font-weight: 600;">
-					<p>Your Link:appointment/events.php?n=<?php echo $_SESSION['name']?><span style="color:blue;padding: 5px;font-size:14px;"><a href="events.php?n=<?php echo $_SESSION['name']?>">preview</a></span>
+				<div class="link" style="text-align: center;font-size: 14px;">
+					<p><b>Your Link:appointment/events.php?n=<?php echo $_SESSION['name']?></b><br>copy and share this link</p>
 				</div>
 			</div>
 			<div class="col-sm-4">
@@ -80,17 +80,21 @@
 		<div class="col-sm-1"></div>
 		<div class="col-sm-10">
 			<div class="col-sm-6">
+				<div class="heading">
+					<p>Select Date and Time Slot</p>
+				</div>
 				<div class="cal1"></div>
+				<div class="button" style="text-align: center;">
+	                             <input  class="button-submit btn btn-primary " type="submit" name="submit" style="background: rgb(177,4,0) !important; border:none !important; color: white !important;" onclick="save();">
+	                        </div>
 			</div>
 			<div class="col-sm-6">
 				<div class="slot-list" style="float: left;width: 100%;">
 				<form id="aform">
 					<input type="hidden" name="token" id="token" value="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>">
-					<div class="list" id="list" style="width: 100%;float: left;margin-top: 50px;"></div>
+					<div class="list" id="list" style="width: 100%;float: left;padding: 10px"></div>
 			
-			<div class="button" style="text-align: center;margin: 25px 0px;">
-	                             <input  class="button-submit btn btn-primary " type="submit" name="submit" style="background: rgb(177,4,0) !important; border:none !important; color: white !important;" onclick="save();">
-	                        </div>
+			
 	                    </form>
 	                </div>
 

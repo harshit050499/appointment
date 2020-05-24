@@ -29,7 +29,7 @@
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="dashboard.php">Home</a></li>
-      <li class="active"><a href="myevents.php"> MY Events</a></li>
+      <li class="active"><a href="myevents.php"> My Events</a></li>
       <li><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">

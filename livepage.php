@@ -4,10 +4,10 @@
 	// {
 	// 	header("Location:index.php");
 	// }
-	if($_GET['n']=="" && $_GET['e']=="")
-	{
-		header("Location:error.php");
-	}
+	// if($_GET['n']=="" && $_GET['e']=="")
+	// {
+	// 	header("Location:error.php");
+	// }
 
 ?>
 <!DOCTYPE html>
