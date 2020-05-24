@@ -1,9 +1,9 @@
 <?php 
-	session_start();
-	if( $_SESSION['mail']=="")
-	{
-		header("Location:index.php");
-	}
+	// session_start();
+	// if( $_SESSION['mail']=="")
+	// {
+	// 	header("Location:index.php");
+	// }
 	// if($_GET['n']=="" && $_GET['e']=="")
 	// {
 	// 	header("Location:error.php");
