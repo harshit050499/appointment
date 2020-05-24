@@ -28,23 +28,24 @@
     <ul class="nav navbar-nav">
       <li ><a href="dashboard.php">Home</a></li>
       <li class="active"><a href="myevents.php"> MY Events</a></li>
-      <li><a href="Schedule.php">Scheduled events</a></li>
+      <li><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+      <li><a href="logout.php"><span class="fa fa-sign-out"></span>Logout</a></li>
     </ul>
   </div>
 </nav>
 <section>
 	<div class="col-sm-12">
 
-		<div class="col-sm-2"></div>
+		<div class="col-sm-2">
+			<div class="neweventbtn" style="text-align: right;">
+					<a href="myevents.php" class="btn btn-primary">View My Event</a>
+				</div>
+		</div>
 		<div class="col-sm-8">
 			<div class="contain-head">
-				<div class="back-button">
-					<button class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
-    font-size: 14px;"></i>Back</button>
-				</div>
+				
 				<div class="heading">
 					<p>Create A New Event</p>
 				</div>
@@ -88,16 +89,18 @@
 									var ename=document.getElementById('ename').value;
 									var etype=document.getElementById('etype').value;
 									var des=document.getElementById('des').value;
-									var token=document.getElementById('token').value;
-									if(ename!="" && etype!="default" && etype!="" && des!="")
+									
+									if(ename!="" && etype!="default" && des!="")
 									{
+										
 										$.ajax(
 										{
-											url:"ajax/addevent.php",  
+											url:"ajax/addevent.php?token=<?php echo $_SESSION['apikey']?>",  
 							                method:"POST",  
-							                data:{ename:ename,etype:etype,des:des,add:"add",token:token},  
+							                data:{ename:ename,etype:etype,des:des,add:"add"},  
 							                 
 							                success:function(data){  
+							                	
 							                  if(data==0)
 							                  {
 							                  	alert('Type of Event added successfully');

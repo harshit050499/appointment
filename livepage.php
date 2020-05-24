@@ -4,10 +4,10 @@
 	// {
 	// 	header("Location:index.php");
 	// }
-	// if($_GET['n']=="" && $_GET['e']=="")
-	// {
-	// 	header("Location:error.php");
-	// }
+	if($_GET['n']=="" && $_GET['e']=="")
+	{
+		header("Location:error.php");
+	}
 
 ?>
 <!DOCTYPE html>
@@ -42,10 +42,10 @@
 
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
-			<div class="contain-head">
+			<div class="contain-head" style="float:left;margin:25px 0px;width: 100%;">
 				<div class="back-button">
-					<button class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
-    font-size: 14px;"></i>Back</button>
+					<a href="events.php?n=<?php echo $_GET['n']?>"class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
+    font-size: 14px;"></i>Back</a>
 				</div>
 				<div class="heading">
 					<p>Book An Appointment</p>
@@ -115,7 +115,7 @@ $(document).ready( function() {
 	{
 		var ename="<?php echo $_GET['e']?>";
 		var name="<?php echo $_GET['n']?>";
-		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		var token="<?php echo password_hash("getevent", PASSWORD_DEFAULT)?>";
 		if(ename!="" && name!="")
 		{
 		$.ajax(
@@ -146,7 +146,7 @@ $(document).ready( function() {
 			b.classList.add('show');
 		var ename="<?php echo $_GET['e']?>";
 		var name="<?php echo $_GET['n']?>";
-		var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>";
+		var token="<?php echo password_hash("getslot", PASSWORD_DEFAULT)?>";
 		//alert(date);
 		
 		if(ename!="" && name!="")

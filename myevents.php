@@ -25,15 +25,15 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Appointment</a>
+      <a class="navbar-brand" href="dashboard.php">Appointment</a>
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="dashboard.php">Home</a></li>
       <li class="active"><a href="myevents.php"> MY Events</a></li>
-      <li><a href="Schedule.php">Scheduled events</a></li>
+      <li><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+      <li><a href="logout.php"><span class="fa fa-sign-out "></span>Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -66,14 +66,34 @@
 	function myevents()
 		{
 			
-			var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT);?>";
+			
 			$.ajax(
 									{
-										url:"ajax/getmyevent.php",  
+										url:"ajax/getmyevent.php?token=<?php echo $_SESSION['apikey'];?>",  
 						                method:"POST",  
-						                data:{token:token,submit:"submit"},    
+						                data:{submit:"submit"},    
 						                success:function(data){  
 						                  $('#myevent').html(data);
+						            }  
+									});
+		}
+		function deleting(id) {
+
+			
+			$.ajax(
+									{
+										url:"ajax/delete.php?token=<?php echo $_SESSION['apikey'];?>",  
+						                method:"POST",  
+						                data:{id:id},    
+						                success:function(data){  
+						                	if(data == 0)
+						                	{
+						                		alert('The event was deleted');
+						                	}
+						                	else
+						                	{
+						                		alert(data);
+						                	}
 						            }  
 									});
 		}

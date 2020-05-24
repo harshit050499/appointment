@@ -4,10 +4,10 @@
 	// {
 	// 	header("Location:index.php");
 	// }
-	// if($_GET['n']=="" && $_GET['e']=="")
-	// {
-	// 	header("Location:error.php");
-	// }
+	if($_GET['n']=="")
+	{
+		header("Location:error.php");
+	}
 	$name=$_GET['n'];
 	//$event=$_GET['e'];
 ?>
@@ -26,37 +26,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">logout</button>
-     
-    </ul>
-  </div>
-</nav>
+
 <section>
     <div class="col-sm-12">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-       <div class="contain-head">
-        <div class="back-button">
-          <button class="btn btn-primary"><i class="fa fa-arrow-left" style="padding: 0px 4px;
-    font-size: 14px;"></i>Back</button>
-        </div>
+       <div class="contain-head" style="width: 100%;float:left;margin: 25px 0px;">
+       
         <div class="heading">
           <p>SCHEDULED EVENTS</p>
         </div>
@@ -76,17 +52,17 @@
   {
     
     var name="<?php echo $_GET['n']?>";
-    
+    var token="<?php echo password_hash("eventlist", PASSWORD_DEFAULT)?>";
     if( name!="")
     {
     $.ajax(
                   {
                     type:'POST',
                     url:"ajax/eventlist.php",
-                    data:{name:name},
+                    data:{name:name,token:token},
                     success:function(data)
                     {
-                      alert(data);
+                     // alert(data);
                       $('#event-list').html(data);
                     }
                   });

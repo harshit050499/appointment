@@ -23,12 +23,12 @@
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Appointment</a>
+      <a class="navbar-brand" href="dashboard.php">Appointment</a>
     </div>
     <ul class="nav navbar-nav">
       <li ><a href="dashboard.php">Home</a></li>
       <li ><a href="myevents.php"> MY Events</a></li>
-      <li class="active"><a href="Schedule.php">Scheduled events</a></li>
+      <li class="active"><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="logout.php"><i class="fa fa-sign-out"></i>Logout</a></li>
@@ -52,19 +52,42 @@
 		function schedule()
 		{
 			
-			var token="<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT);?>";
+			
 			$.ajax(
 									{
-										url:"ajax/schedule.php",  
+										url:"ajax/schedule.php?token=<?php echo $_SESSION['apikey'];?>",  
 						                method:"POST",  
-						                data:{token:token,submit:"submit"},    
+						                data:{submit:"submit"},    
 						                success:function(data){  
-						                	alert(data);
+						                	//alert(data);
 						                  $('#schedule').html(data);
 						            }  
 									});
 		}
 		schedule();
+		function cancel(id)
+		{
+			
+			
+			$.ajax(
+									{
+										url:"ajax/cancel.php?token=<?php echo $_SESSION['apikey'];?>",  
+						                method:"POST",  
+						                data:{id:id},    
+						                success:function(data){  
+						                	if(data == 0)
+						                	{
+						                		alert('The Appointment was cancelled');
+						                	}
+						                	else
+						                	{
+						                		alert(data);
+						                	}
+						            }  
+									});
+
+		}
+
 	</script>
 </body>
 

@@ -1,13 +1,12 @@
 <?php 
-	session_start();
 	// if( $_SESSION['mail']=="")
 	// {
 	// 	header("Location:index.php");
 	// }
-	// if($_GET['n']=="" && $_GET['e']=="")
-	// {
-	// 	header("Location:error.php");
-	// }
+	if($_GET['n']=="" && $_GET['e']=="")
+	{
+		header("Location:error.php");
+	}
 	//$event=$_GET['e'];
 ?>
 <!DOCTYPE html>
@@ -74,14 +73,14 @@
     var slot="<?php echo $_GET['s']?>";
     var eid="<?php echo $_GET['eid']?>";
     var name="<?php echo $_GET['n']?>";
-    
+    var token="<?php echo $_GET['token']?>";
     if( slot!="" && eid!="" && name!="")
     {
     $.ajax(
                   {
                     type:'POST',
                     url:"ajax/booking.php",
-                    data:{slot:slot,eid:eid,name:name,form:"form"},
+                    data:{slot:slot,eid:eid,name:name,form:"form",token:token},
                     success:function(data)
                     {
                       //alert(data);
@@ -117,6 +116,7 @@
                       if(data==0)
                       {
                         alert('Appointment Booked Successfully');
+                        window.location.href = "events.php?n=<?php echo $_GET['n'];?>";
                       }
                       else
                       {

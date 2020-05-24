@@ -7,6 +7,7 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/normalize.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -30,23 +31,34 @@
 		margin: 25px 0px;
 	}
 </style>
-<body>
+<body style="background-color:#06508f; "> 
+	<section style="margin-top: 30px;">
+		<div class="col-sm-12">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="main-head">
+					<p>APPOINTMENT BOOKING SYSTEM</p>
+				</div>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+	</section>
 	<section>
 	<div class="col-sm-12">
 		
-		<div class="col-sm-5">
+		<div class="col-sm-4">
 			
 		</div>
-		<div class="col-sm-2"></div>
-		<div class="col-sm-5">
-			<div class="optionbutton">
+		
+		<div class="col-sm-4">
+			<div class="optionbutton" style="text-align: center;">
 			<div class="col-sm-6">
 				<button id="loginbutton" onclick="showlogin();">LOG IN</button>
 			</div>
 			<div class="col-sm-6">
-				<button id="loginbutton" onclick="showsignup();">SIGN UP</button>
+				<button id="signupbutton" onclick="showsignup();">SIGN UP</button>
 			</div>
-		</div>
+			</div>
 			<div class="contain-forms">
 				<div class="login-form " id="loginform">
 					<form>
@@ -94,7 +106,7 @@
 				</div>
 			</div>
 		</div>
-		
+		<div class="col-sm-4"></div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -118,6 +130,7 @@
 	{
 		var email=document.getElementById('email').value;
 		var pass=document.getElementById('password').value;
+		var token='<?php echo password_hash("login", PASSWORD_DEFAULT);?>';
 		if(email!="" && pass!="")
 		{
 			if (ValidateEmail(email)) {
@@ -126,7 +139,7 @@
 				{
 					type:'POST',
 					url:"ajax/login.php",
-					data:{email:email,pass:pass,login:'login'},
+					data:{email:email,pass:pass,login:'login',token:token},
 					success:function(data)
 					{
 						if(data == 0)

@@ -35,15 +35,15 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Appointment</a>
+      <a class="navbar-brand" href="dashboard.php">Appointment</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#"> MY Events</a></li>
-      <li><a href="#">Scheduled events</a></li>
+      <li class="active"><a href="dashboard.php">Home</a></li>
+      <li><a href="myevents.php"> MY Events</a></li>
+      <li><a href="schedule.php">Scheduled events</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+      <li><a href="logout.php"><span class="fa fa-sign-out "></span>Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -142,8 +142,8 @@ $(document).ready( function() {
 			$.ajax(
 									{
 										type:'POST',
-										url:"ajax/check.php",
-										data:{token:'<?php echo password_hash($_SESSION['mail'], PASSWORD_DEFAULT)?>'},
+										url:"ajax/check.php?token=<?php echo $_SESSION['apikey']?>",
+										data:{},
 										success:function(data)
 										{
 											//alert(data);
@@ -162,7 +162,7 @@ $(document).ready( function() {
 									
 									$.ajax(
 									{
-										url:"ajax/export.php",  
+										url:"ajax/export.php?token=<?php echo $_SESSION['apikey']?>",  
 						                method:"POST",  
 						                data:data,  
 						                contentType:false,  
