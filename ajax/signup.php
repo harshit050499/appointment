@@ -29,13 +29,21 @@ function keygen($length=10)
 		if(validiate_input($name,0) && validiate_input($email,1) && validiate_input($pass,2))
 		{
 			$check=$db->prepare('SELECT * from user_details WHERE  email = ?');
-			$data=array($email);
+			$data=array($name);
 			$check->execute($data);
 			if($check->rowCount() == 1)
 			{
 				$flag=1;
 				echo 3;
 			}
+            $check=$db->prepare('SELECT * from user_details WHERE name=?');
+            $data=array($name);
+            $check->execute($data);
+            if($check->rowcount() ==1)
+            {
+                    $flag=1;
+                    echo 4;
+            }
 			if($flag==0)
 			{
 				$password1_hash=password_hash($pass,PASSWORD_DEFAULT);

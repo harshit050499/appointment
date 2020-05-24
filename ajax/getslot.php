@@ -25,6 +25,8 @@
             $a[]=explode(",", $datarow['slot']);
         }
         //var_dump($a[0]);
+        if(!empty($a))
+        {
         $check=$db->prepare('SELECT * FROM  slotlist');
         $data=array();
         $check->execute($data);
@@ -80,6 +82,15 @@
         	}
 	}
 
+}
+else
+{
+    ?>
+    <div class="booked-text">
+                    <p>No slots available</p>
+                </div>
+                <?php
+}
 }
 function test_input($data) {
   $data = trim($data);

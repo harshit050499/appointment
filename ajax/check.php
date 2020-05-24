@@ -14,16 +14,17 @@
                     
                     ?>
                     <div class="col-sm-3">
-                        <div class="" style="float: left;width: 100%;">
-                            <input type="checkbox" name="check_list[]" value="<?php echo $datarow['id'] ?>"><label style="padding: 10px 17px;"><?php echo $datarow['start'].'-'.$datarow['end']?></label>
+                        <div class="indi-slot" style="float: left;width: 100%;">
+                           <input class="form-control" type="checkbox" name="check_list[]" value="<?php echo $datarow['id'] ?>">
+                           <div style="text-align: center;"><label style="padding: 10px;"><?php echo $datarow['start'].'-'.$datarow['end']?></label></div>
                         </div>
                         
                         </div>
                         <?php
-                    }
-                    $count++;
+                   
+                     
             }
         
     }
-
+}
 ?>
