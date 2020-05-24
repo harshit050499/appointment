@@ -78,6 +78,7 @@
 						                	if(data == 0)
 						                	{
 						                		alert('The Appointment was cancelled');
+										location.reload();
 						                	}
 						                	else
 						                	{
