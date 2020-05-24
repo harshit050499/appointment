@@ -89,6 +89,7 @@
 						                	if(data == 0)
 						                	{
 						                		alert('The event was deleted');
+										location.reload();
 						                	}
 						                	else
 						                	{
